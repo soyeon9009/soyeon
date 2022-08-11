@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <link rel="stylesheet" href="/css/common.css">
+    <meta charset="UTF-8">
+    <title>회원 찾기</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body th:align="center">
+<h1>회원 찾기</h1>
+<!--
+    [클라이언트] html의 form태그를 통한 submit액션을 실행하면 [서버]로 전달되는 mapping주소
+    th:action="insertBoard"
+    method="post" //get/post 2가지 방식이 있음// 방식으로 데이터 전달 명시해줌.
+    [서버]컨트롤러에서는 get방식 받는 것과 post방식으로 받는 것을 구분 할 수 있다.
+-->
+<form th:action="@{/account/selectAccount}" method="post">
+    <table th:align="center" border="1" th:cellpadding ="0" th:cellspacing="0">
+        <tr>
+            <td bgcolor="orange" th:text="ID" width="80"></td>
+            <td><input name="id" type="text" size="50"></td>
+        </tr>
+        <tr>
+            <td bgcolor="orange" th:text="E-mail"></td>
+            <td><input name="email" type="text" size="30"> </td>
+        </tr>
+        <tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="찾기">
+            </td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>

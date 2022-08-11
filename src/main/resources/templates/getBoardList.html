@@ -10,13 +10,13 @@
     <h1>게시글 목록</h1>
     <table id="board">
         <thead>
-            <tr>
-                <th scope="col" class="seq">번호</th>
-                <th scope="col" class="title">제목</th>
-                <th scope="col" class="writer">작성자</th>
-                <th scope="col" class="regdate">등록일</th>
-                <th scope="col" class="cnt">조회수</th>
-            </tr>
+        <tr>
+            <th scope="col" class="seq">번호</th>
+            <th scope="col" class="title">제목</th>
+            <th scope="col" class="writer">작성자</th>
+            <th scope="col" class="regdate">등록일</th>
+            <th scope="col" class="cnt">조회수</th>
+        </tr>
         </thead>
         <tbody>
             <tr th:each="board : ${boardList}">
@@ -38,6 +38,7 @@
     <div class="btn_area clear">
         <div class="fr">
             <a class="btn write" th:href="@{/insertBoard}">쓰기</a>
+            <a class="btn back fl" th:href="@{/index}"></a>
         </div>
     </div>
 </body>

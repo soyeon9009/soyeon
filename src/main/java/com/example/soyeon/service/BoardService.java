@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.soyeon.service;
 
 /**
 * @package : com.example.demo.service
@@ -10,7 +10,11 @@ package com.example.demo.service;
 * @description : 게시판 서비스
 **/
 
-import com.example.demo.domain.Board;
+
+
+import com.example.soyeon.domain.Board.Board;
+import com.example.soyeon.domain.Board.Reply;
+import com.example.soyeon.domain.account_info.Member;
 
 import java.util.List;
 
@@ -24,4 +28,21 @@ public interface BoardService {
     void updateBoard(Board board);
 
     void deleteBoard(Board board);
+
+    void insertReply(Reply reply);
+
+    List<Reply> getAllReply(Reply reply);
+
+    //작성자의 모든 게시글 출력
+    List<Board> getBoardListByMemberId(Member member);
+
+    //키워드 분석
+//    List<String> doNounsAnalysis(List<Board> boardList);
+
+
+
+
+
+
+
 }

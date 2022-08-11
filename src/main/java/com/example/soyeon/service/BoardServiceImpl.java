@@ -1,4 +1,4 @@
-package com.example.demo.service;
+package com.example.soyeon.service;
 
 /**
 * @package : com.example.demo.service
@@ -10,8 +10,11 @@ package com.example.demo.service;
 * @description : 게시판 서비스 구현체
 **/
 
-import com.example.demo.domain.Board;
-import com.example.demo.persistence.BoardRepository;
+import com.example.soyeon.domain.Board.Board;
+import com.example.soyeon.domain.Board.Reply;
+import com.example.soyeon.domain.account_info.Member;
+import com.example.soyeon.persistence.BoardRepository;
+import com.example.soyeon.persistence.ReplyRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,8 +26,14 @@ import java.util.List;
 public class BoardServiceImpl implements BoardService {
 
     @Autowired
-    private BoardRepository boardRepo;
+    private final BoardRepository boardRepo;
     //BoardRepository에 있는 DB와 연동하여 기능하는 것을 명시
+    private final ReplyRepository replyRepo;
+
+    protected BoardServiceImpl(BoardRepository boardRepo, ReplyRepository replyRepo){
+        this.boardRepo = boardRepo;
+        this.replyRepo = replyRepo;
+    }
 
     //클라이언트에서 받아온 Board객체의 데이터를 BoardRepository의 상속받은 CrudRepository의 findAll메서드를 통해서
     //전체 조회
@@ -57,4 +66,28 @@ public class BoardServiceImpl implements BoardService {
     public void deleteBoard(Board board) {
         boardRepo.deleteById(board.getSeq());
     }
+
+    @Override
+    public void insertReply(Reply reply) {
+        Board board = new Board();
+        board.setSeq(reply.getBoard_seq());
+        reply.setBoard(board);
+
+        replyRepo.save(reply);
+    }
+
+    @Override
+    public List<Board> getBoardListByMemberId(Member member) {
+        //Repository
+        return boardRepo.findAllByMemberIdEqualsBoardWriter(member.getId());
+
+    }
+
+    @Override
+    public List<Reply> getAllReply(Reply reply) {
+        return replyRepo.findReplyByBoard_seq(reply.getBoard_seq());
+    }
+
+
+
 }

@@ -5,6 +5,9 @@
     <link rel="stylesheet" href="/css/common.css">
     <link rel="stylesheet" href="/css/document.css">
     <link rel="stylesheet" href="/css/comment.css">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/board.css">
+    <link rel="stylesheet" href="/css/common.css">
     <title>게시 글 상세</title>
 </head>
 <body>
@@ -24,19 +27,72 @@
                 </div>
             </div>
         </div>
+
         <article class="content" th:text="${board.content}"></article>
         <div class="row between">
             <a class="btn back fl" th:href="@{/getBoardList}"></a>
             <div class="row fr gap">
                 <a class="btn write fl" th:href="@{/updateBoard(seq=${board.seq})}"></a>
-                <form class="fl" action="deleteBoard" method="post">
+                <form class="fl" action="/deleteBoard" method="post">
                     <input type="hidden" name="seq" th:value="${board.seq}">
                     <button class="btn delete" onclick="this.submit()"></button>
                 </form>
             </div>
         </div>
     </main>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <!---------------------------------------------------------------------------------------------------------->
+    <form th:action="@{/insertReply}" method="post">
+        <table th:align="center" border="3" th:cellpadding="0" th:cellspacing="0">
+            <tr>
+                <input type="hidden" id= "board_seq" name="board_seq" th:value="${board.seq}">
+                <td bgcolor="#808080" th:text="댓글" width="80"></td>
+                <td> <input name="content" th:rows="200" th:placeholder="내용"> </td>
+            </tr>
+            <td colspan="2" align="center">
+                <input type="submit" value="등록">
+            </td>
+        </table>
+    </form>
+    <!----------------------------------------------------------------------------------------------------------->
 
 
+    <!---------------------------------------------------------------------------------------------------------->
+
+    <br>
+    <br>
+    <h5>댓글 목록</h5>
+    <table id="board">
+        <thead>
+            <tr>
+                <th scope="col" class="seq">번호</th>
+                <th scope="col" class="title">내용</th>
+<!--                <th scope="col" class="writer">작성자</th>-->
+                <th scope="col" class="regdate">등록일</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="reply : ${ReplyList}">
+                <td class="seq" th:text="${reply.seq}"></td>
+                <td class="title" th:text="${reply.content}"></td>
+<!--                <td class="writer" th:text="${reply.board.writer}"></td>-->
+                <td class="regdate" th:text="${reply.createDate}"></td>
+            </tr>
+        </tbody>
+    </table>
+<!--    <div class="btn_area clear">-->
+<!--        <div class="fr">-->
+<!--            <a class="btn write" th:href="@{/insertBoard}">쓰기</a>-->
+<!--            <a class="btn back fl" th:href="@{/index}"></a>-->
+<!--        </div>-->
+<!--    </div>-->
+    <!----------------------------------------------------------------------------------------------------------->
 </body>
 </html>

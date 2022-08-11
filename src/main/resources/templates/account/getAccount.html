@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/board.css">
+<!--    <link rel="stylesheet" href="/css/member.css">-->
+
+
+    <title>Title</title>
+</head>
+<body>
+<form th:action="@{/account/updateAccount}" method="post">
+    <input name="seq" type="hidden" th:value="${member.seq}">
+<!--회원정보 같은 민감데이터는 가능한 암호화와 숨김코드로 작성이 필요-->
+    <h1 th:align="center">상세 회원정보</h1>
+<table id = "board">
+    <thead>
+    <tr>
+        <th scope="col" class="id">아이디</th>
+        <th scope="col" class="password">비밀번호</th>
+        <th scope="col" class="email">E-mail</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td th:text="${member.id}"></td>
+
+        <td>
+            <input name="password" type="text" th:value="${member.password}">
+        </td>
+        <td>
+            <input name="email" type="text" th:value="${member.email}">
+        </td>
+        <td colspan="2" align="center">
+            <input type="submit" value="수정">
+        </td>
+    </tr>
+    </tbody>
+</table>
+    </form>
+        <div class="row between">
+            <a class="btn back fl" th:href="@{/account/getAccountList}"></a>
+            <a class="btn write fl" th:href="@{/account/updateAccount(seq=${member.seq})}"></a>
+            <!--get방식으로 member.id 파라미터를 갖고 server에 이동-->
+            <!--타임리프 문법으로는 member기준으로 필드값을 출력하고 있으므로,selectBoard에 파라미터 값을 board.member.id로
+            넘겨줄 경우 그에 따른 member와 board와의 관계를 타임리프ㅔ서 인지하고, 클라이언트에서 서버로 넘러갈 때 Entity가
+            board.member.id로 인지하고 객체화 시켜야 하는 문제 -->
+            <a class="btn write fl" th:href="@{/selectBoard(id=${member.id})}">회원게시글 보기</a>
+
+            <form class="fl" action="/account/deleteAccount" method="post">
+                <input type="hidden" name="seq" th:value="${member.seq}">
+                <button class="btn delete" onclick="this.submit()"></button>
+            </form>
+        </div>
+</body>
+</html>
+
+<!--<!DOCTYPE html>-->
+<!--<html lang="en" xmlns:th="http://www.thymeleaf.org">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <link rel="stylesheet" href="/css/common.css">-->
+<!--    <link rel="stylesheet" href="/css/board.css">-->
+<!--&lt;!&ndash;    <link rel="stylesheet" href="/css/member.css">&ndash;&gt;-->
+
+
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+<!--&lt;!&ndash;회원정보 같은 민감데이터는 가능한 암호화와 숨김코드로 작성이 필요&ndash;&gt;-->
+<!--    <h1 th:align="center">상세 회원정보</h1>-->
+<!--<table id = "board">-->
+<!--    <thead>-->
+<!--    <tr>-->
+<!--        <th scope="col" class="id">아이디</th>-->
+<!--        <th scope="col" class="password">비밀번호</th>-->
+<!--        <th scope="col" class="email">E-mail</th>-->
+<!--    </tr>-->
+<!--    </thead>-->
+<!--    <tbody>-->
+<!--    <tr>-->
+<!--        <td th:text="${member.id}">-->
+<!--        <td th:text="${member.password}"></td>-->
+<!--        <td th:text="${member.email}"></td>-->
+<!--    </tr>-->
+<!--    </tbody>-->
+<!--</table>-->
+<!--        <div class="row between">-->
+<!--            <a class="btn back fl" th:href="@{/account/getAccountList}"></a>-->
+<!--            <a class="btn write fl" th:href="@{/account/updateAccount(seq=${member.seq})}"></a>-->
+<!--            <form class="fl" action="/account/deleteAccount" method="post">-->
+<!--                <input type="hidden" name="seq" th:value="${member.seq}">-->
+<!--                <button class="btn delete" onclick="this.submit()"></button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--</body>-->
+<!--</html>-->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!--<main>-->
+<!--        <div class="row">-->
+<!--            <div class="id" th:text="${member.id}">ID</div>-->
+<!--            <div class="password" th:text="${member.password}">비밀번호</div>-->
+<!--            <div class="email" th:text="${member.email}">E-mail</div>-->
+<!--        </div>-->
+<!--        <div class="row between">-->
+<!--            <a class="btn back fl" th:href="@{/account/getAccountList}"></a>-->
+<!--            <a class="btn write fl" th:href="@{/account/updateAccount(seq=${member.seq})}"></a>-->
+<!--            <form class="fl" action="/account/deleteBoard" method="post">-->
+<!--                <input type="hidden" name="seq" th:value="${member.seq}">-->
+<!--                <button class="btn delete" onclick="this.submit()"></button>-->
+<!--            </form>-->
+<!--        </div>-->
+<!--    </main>-->
+
+<!--</body>-->
+<!--</html>-->
