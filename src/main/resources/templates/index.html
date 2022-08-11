@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org/">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+</head>
+<body>
+    <p>hello world</p>
+    <a href="/hello">hello!</a>
+    <a href="/account">account!</a>
+    <hr>
+    <p th:text="${msg}"></p>
+    <hr>
+    <h1>회원가입</h1>
+    <form method="POST" action="/account">
+        <input type="text" name="id1" th:value="${id2}" />
+        <input type="submit" value="Click" />
+    </form>
+</body>
+</html>

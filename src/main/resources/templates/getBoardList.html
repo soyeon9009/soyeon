@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/common.css">
+    <link rel="stylesheet" href="/css/board.css">
+    <title>게시 글 목록</title>
+</head>
+<body>
+    <h1>게시글 목록</h1>
+    <table id="board">
+        <thead>
+            <tr>
+                <th scope="col" class="seq">번호</th>
+                <th scope="col" class="title">제목</th>
+                <th scope="col" class="writer">작성자</th>
+                <th scope="col" class="regdate">등록일</th>
+                <th scope="col" class="cnt">조회수</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr th:each="board : ${boardList}">
+                <td class="seq" th:text="${board.seq}"></td>
+                <td class="title">
+                    <a th:href="@{/getBoard(seq=${board.seq})}">
+                        <span th:text="${board.title}"></span>
+                        <div class="summary">
+                            <div>요약입니다.</div>
+                        </div>
+                    </a>
+                </td>
+                <td class="writer" th:text="${board.writer}"></td>
+                <td class="regdate" th:text="${board.createDate}"></td>
+                <td class="cnt" th:text="${board.cnt}"></td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="btn_area clear">
+        <div class="fr">
+            <a class="btn write" th:href="@{/insertBoard}">쓰기</a>
+        </div>
+    </div>
+</body>
+</html>
