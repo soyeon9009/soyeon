@@ -45,4 +45,9 @@ public interface BoardService {
     FileUploadEntity getFileuploadEntity2(Long board_seq);
 
 
+
+
+
+
+
 }

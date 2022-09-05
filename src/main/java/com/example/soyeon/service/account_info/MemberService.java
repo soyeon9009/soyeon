@@ -1,5 +1,6 @@
 package com.example.soyeon.service.account_info;
 
+import com.example.soyeon.DTO.CustomDto;
 import com.example.soyeon.domain.account_info.Member;
 
 import java.util.List;
@@ -38,6 +39,9 @@ public interface MemberService {
     boolean booleanSearchUserPW(Member member, String password);
 
     Member getExactEmail(Member member, String id, String pw);
+
+    CustomDto getCustomDtoByMemberId(String memberId);
+
 
 
 

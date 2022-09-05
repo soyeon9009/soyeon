@@ -1,12 +1,16 @@
 package com.example.soyeon.domain.account_info;
 
+import com.example.soyeon.domain.Board.Board;
 import com.example.soyeon.domain.base.BaseTimeEntity;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
+import org.hibernate.annotations.BatchSize;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 @Setter
 @Getter
@@ -79,6 +83,11 @@ public class Member extends BaseTimeEntity implements Serializable {
 
     @Column(nullable = false)
     private String email;
+
+    @BatchSize(size=100)
+    @OneToMany(mappedBy = "member")
+    private List<Board> boardList = new ArrayList<>();
+
 
 //    @Setter
 //    @Temporal(TemporalType.DATE)

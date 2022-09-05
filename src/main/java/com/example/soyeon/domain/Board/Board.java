@@ -57,6 +57,11 @@ public class Board extends BaseTimeEntity {
 //    @JoinColumn(name = "id", referencedColumnName = "id")
 //    private Member member;
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "id", referencedColumnName = "id")
+    private Member member;
+
+
 
     //타입이 날짜
 //    @Temporal(TemporalType.DATE)

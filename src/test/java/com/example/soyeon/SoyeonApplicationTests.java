@@ -1,12 +1,20 @@
 package com.example.soyeon;
 
+import com.example.soyeon.DTO.CustomDto;
 import com.example.soyeon.domain.account_info.Member;
+import com.example.soyeon.persistence.BoardRepository;
+import com.example.soyeon.persistence.account_info.MemberRepository;
 import com.example.soyeon.service.APITest.apiTest;
 import com.example.soyeon.service.TextTransfer.SeleniumExam;
+import com.example.soyeon.service.account_info.MemberService;
+import com.example.soyeon.service.account_info.MemberServiceImpl;
+import org.checkerframework.checker.units.qual.A;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.util.List;
 
 @SpringBootTest
 class SoyeonApplicationTests {
@@ -16,6 +24,12 @@ class SoyeonApplicationTests {
 
 	@Autowired
 	SeleniumExam seleniumExam;
+
+	@Autowired
+	MemberRepository memberRepository;
+
+	@Autowired
+	BoardRepository boardRepository;
 	@Test
 	void apiTest_2(){
 		apiTest_1.resultAPI();
@@ -44,5 +58,20 @@ class SoyeonApplicationTests {
 	void contextLoads() {
 
 	}
+
+	@Test
+void testNative(){
+		memberRepository.findID().forEach(System.out::println);
+	}
+
+	@Test
+	void testQuery(){
+		memberRepository.findAll().forEach(System.out::println);
+	}
+
+//	@Test
+//	void testRepository(){
+//		boardRepository.findAllByMemberIdEqualsBoardWriter("id");
+//	}
 
 }

@@ -1,6 +1,8 @@
 package com.example.soyeon.service.account_info;
 
+import com.example.soyeon.DTO.CustomDto;
 import com.example.soyeon.domain.account_info.Member;
+import com.example.soyeon.persistence.Custom.CustomDtoRepository;
 import com.example.soyeon.persistence.account_info.MemberRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,9 @@ public class MemberServiceImpl implements MemberService{
     //서비스와 레파지토리가 연결됨.
     @Autowired
     private MemberRepository memberRepository;
+    @Autowired
+    private CustomDtoRepository customDtoRepository;
+
 
     //memberRepository : @Autowired MemberRepository를 통해 기능 실행
     //모든 회원의 정보를 가져다 오는 것.
@@ -132,5 +137,12 @@ public class MemberServiceImpl implements MemberService{
         //        }
         return exact;
     }
+
+    @Override
+    public CustomDto getCustomDtoByMemberId(String memberId) {
+        return customDtoRepository.findExample(memberId);
+    }
+
+
 
 }
