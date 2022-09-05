@@ -13,6 +13,7 @@ package com.example.soyeon.service;
 
 
 import com.example.soyeon.domain.Board.Board;
+import com.example.soyeon.domain.Board.FileUploadEntity;
 import com.example.soyeon.domain.Board.Reply;
 import com.example.soyeon.domain.account_info.Member;
 
@@ -21,7 +22,7 @@ import java.util.List;
 public interface BoardService {
     List<Board> getBoardList();
 
-    void insertBoard(Board board);
+    Long insertBoard(Board board);
 
     Board getBoard(Board board);
 
@@ -39,10 +40,9 @@ public interface BoardService {
     //키워드 분석
 //    List<String> doNounsAnalysis(List<Board> boardList);
 
+    Long insertFileUploadEntity(FileUploadEntity fileUploadEntity);
 
-
-
-
+    FileUploadEntity getFileuploadEntity2(Long board_seq);
 
 
 }
